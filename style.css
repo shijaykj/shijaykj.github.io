@@ -154,4 +154,22 @@
         justify-content: center;
         margin-top: 8px;
     }
+}.email-link {
+    color: var(--ink);
+    font: 700 18px 'Space Grotesk', sans-serif;
+    text-decoration: none;
+}
+
+.email-link:hover {
+    text-decoration: underline;
+}
+
+.phone-link {
+    color: #68705f;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.phone-link:hover {
+    text-decoration: underline;
 }
