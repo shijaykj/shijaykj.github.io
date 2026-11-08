@@ -36,6 +36,7 @@
 
   /* ---------- Scroll-driven UI (one rAF-throttled handler) ---------- */
   const navWrap = document.querySelector('.nav-wrap');
+  const toTop = document.querySelector('.to-top');
   const progress = document.querySelector('.scroll-progress');
   const timeline = document.querySelector('.timeline');
   const track = document.querySelector('.timeline-track');
@@ -50,7 +51,9 @@
     const r = timeline && track ? timeline.getBoundingClientRect() : null;
 
     navWrap?.classList.toggle('scrolled', y > 8);
-    progress?.style.setProperty('--sp', max > 0 ? (y / max).toFixed(4) : '0');
+    const sp = max > 0 ? (y / max).toFixed(4) : '0';
+    progress?.style.setProperty('--sp', sp);
+    if (toTop) { toTop.style.setProperty('--sp', sp); toTop.classList.toggle('show', y > vh * 0.8); }
     if (r) {
       const p = Math.min(1, Math.max(0, (vh * 0.75 - r.top) / r.height));
       track.style.setProperty('--p', p.toFixed(4));
@@ -99,6 +102,13 @@
     };
     requestAnimationFrame(step);
   };
+
+  /* ---------- Motion setup: stroke drawing + cascade order ---------- */
+  document.querySelectorAll('.skill-card .icon path, .skill-card .icon circle')
+    .forEach((el) => el.setAttribute('pathLength', '1'));
+  document.querySelectorAll('.chips, .highlights, .engagements').forEach((list) => {
+    [...list.children].forEach((child, i) => child.style.setProperty('--i', i));
+  });
 
   /* ---------- Scroll reveal ---------- */
   const revealEls = document.querySelectorAll('[data-reveal]');
@@ -179,18 +189,19 @@
   /* ---------- Copy email ---------- */
   const copyBtn = document.querySelector('.copy-email');
   const copyStatus = document.getElementById('copy-status');
+  const copyLabel = copyBtn?.querySelector('.btn-label');
   if (copyBtn && navigator.clipboard && window.isSecureContext) {
     copyBtn.hidden = false;
     let reset = 0;
     copyBtn.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(copyBtn.dataset.copy);
-        copyBtn.textContent = 'Copied ✓';
+        if (copyLabel) copyLabel.textContent = 'Copied ✓';
         copyBtn.classList.add('copied');
         if (copyStatus) copyStatus.textContent = 'Email address copied to clipboard';
         clearTimeout(reset);
         reset = setTimeout(() => {
-          copyBtn.textContent = 'Copy email';
+          if (copyLabel) copyLabel.textContent = 'Copy email';
           copyBtn.classList.remove('copied');
           if (copyStatus) copyStatus.textContent = '';
         }, 2200);
