@@ -4,21 +4,42 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Shijay Jayan — Performance Test Engineer with 7+ years of experience in JMeter, NeoLoad, LoadRunner, BlazeMeter, Grafana and performance engineering.">
+  <meta name="theme-color" content="#0a0d12">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Shijay Jayan | Performance Test Engineer">
+  <meta property="og:description" content="Shijay Jayan — Performance Test Engineer with 7+ years of experience in JMeter, NeoLoad, LoadRunner, BlazeMeter, Grafana and performance engineering.">
+  <meta property="og:url" content="https://shijaykj.github.io/">
+  <meta property="og:image" content="https://shijaykj.github.io/profile.png">
   <title>Shijay Jayan | Performance Test Engineer</title>
+  <link rel="icon" href="profile-96.webp" type="image/webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <!-- Flag JS support early so reveal animations never hide content when scripts are unavailable -->
+  <script>document.documentElement.classList.add('js')</script>
+  <script src="script.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#about">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
   <header class="nav-wrap">
-    <nav class="nav container">
+    <nav class="nav container" aria-label="Primary">
       <a class="brand" href="#top">
-    <img src="profile.png" alt="Shijay Jayan" style="width:42px;height:42px;min-width:42px;max-width:42px;min-height:42px;max-height:42px;object-fit:cover;border-radius:50%;display:block;">
-    <span>Shijay Jayan</span>
-</a>
-      <button class="menu" aria-label="Open menu" aria-expanded="false">☰</button>
-      <div class="nav-links">
+        <picture>
+          <source srcset="profile-96.webp" type="image/webp">
+          <img src="profile-96.jpg" alt="Shijay Jayan" width="42" height="42" decoding="async">
+        </picture>
+        <span>Shijay Jayan</span>
+      </a>
+      <button class="menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span class="menu-bar" aria-hidden="true"></span>
+        <span class="menu-bar" aria-hidden="true"></span>
+        <span class="menu-bar" aria-hidden="true"></span>
+      </button>
+      <div class="nav-links" id="nav-links">
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
@@ -30,46 +51,66 @@
   </header>
 
   <main id="top">
-    <section class="hero container">
-      <div class="hero-copy">
-        <div class="eyebrow"><span class="dot"></span> PERFORMANCE ENGINEERING</div>
-        <h1>Building confidence in software <span>under load.</span></h1>
-        <p class="hero-text">I'm Shijay Jayan, a Performance Test Engineer with 7+ years of experience helping teams understand application behaviour, uncover bottlenecks and ship reliable releases.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#experience">Explore my experience <span>↗</span></a>
-          <a class="btn secondary" href="#contact">Get in touch</a>
-        </div>
-        <div class="quick-stats">
-          <div><strong>7+</strong><span>Years in performance testing</span></div>
-          <div><strong>JMeter</strong><span>Core load-testing platform</span></div>
-          <div><strong>AWS</strong><span>Cloud Practitioner certified</span></div>
-        </div>
-      </div>
-      <div class="hero-visual" aria-label="Performance engineering visual">
-        <div class="terminal-card">
-          <div class="terminal-top"><span></span><span></span><span></span><b>performance-test.log</b></div>
-          <div class="terminal-body">
-            <p><i>$</i> ./run-performance-test</p>
-            <p class="muted">Initializing workload model...</p>
-            <p><i>✓</i> Users ramped: <strong>1,000+</strong></p>
-            <p><i>✓</i> Throughput: <strong>84 TPS</strong></p>
-            <p><i>✓</i> SLA validation complete</p>
-            <p class="highlight">→ Bottleneck analysis ready</p>
-            <div class="bars"><span style="height:42%"></span><span style="height:68%"></span><span style="height:55%"></span><span style="height:86%"></span><span style="height:72%"></span><span style="height:94%"></span><span style="height:78%"></span><span style="height:100%"></span></div>
+    <section class="hero-shell">
+      <canvas class="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero container">
+        <div class="hero-copy">
+          <div class="eyebrow intro" style="--d:0"><span class="dot"></span> PERFORMANCE ENGINEERING</div>
+          <h1 class="intro" style="--d:1">Building confidence in software <span>under load.</span></h1>
+          <p class="hero-text intro" style="--d:2">I'm Shijay Jayan, a Performance Test Engineer with 7+ years of experience helping teams understand application behaviour, uncover bottlenecks and ship reliable releases.</p>
+          <div class="hero-actions intro" style="--d:3">
+            <a class="btn primary" href="#experience">Explore my experience <span class="btn-arrow" aria-hidden="true">↗</span></a>
+            <a class="btn secondary" href="#contact">Get in touch</a>
+          </div>
+          <div class="quick-stats intro" style="--d:4">
+            <div><strong data-count="7">7+</strong><span>Years in performance testing</span></div>
+            <div><strong>JMeter</strong><span>Core load-testing platform</span></div>
+            <div><strong>AWS</strong><span>Cloud Practitioner certified</span></div>
           </div>
         </div>
-        <div class="floating-card fc-one">JMeter <b>●</b></div>
-        <div class="floating-card fc-two">Grafana <b>↗</b></div>
+
+        <div class="hero-visual intro" style="--d:2" aria-label="Performance engineering visual" role="img">
+          <svg class="chart-backdrop" viewBox="0 0 400 220" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#a6e36b" stop-opacity=".18"/>
+                <stop offset="1" stop-color="#a6e36b" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path class="chart-area" d="M0 170 C40 160 60 120 100 128 S160 70 200 90 S260 40 300 60 S360 30 400 36 V220 H0Z" fill="url(#area)"/>
+            <path class="chart-line" pathLength="1" d="M0 170 C40 160 60 120 100 128 S160 70 200 90 S260 40 300 60 S360 30 400 36"/>
+            <path class="chart-line alt" pathLength="1" d="M0 196 C50 190 80 176 120 182 S190 150 230 160 S300 130 340 140 S380 120 400 124"/>
+          </svg>
+
+          <div class="tilt-stage" data-tilt data-tilt-max="7">
+            <div class="terminal-card">
+              <div class="terminal-top"><span></span><span></span><span></span><b>performance-test.log</b></div>
+              <div class="terminal-body">
+                <p><i>$</i> ./run-performance-test</p>
+                <p class="muted">Initializing workload model...</p>
+                <p><i>✓</i> Users ramped: <strong>1,000+</strong></p>
+                <p><i>✓</i> Throughput: <strong>84 TPS</strong></p>
+                <p><i>✓</i> SLA validation complete</p>
+                <p class="highlight">→ Bottleneck analysis ready</p>
+                <div class="bars"><span style="--h:.42"></span><span style="--h:.68"></span><span style="--h:.55"></span><span style="--h:.86"></span><span style="--h:.72"></span><span style="--h:.94"></span><span style="--h:.78"></span><span style="--h:1"></span></div>
+              </div>
+            </div>
+            <div class="floating-card fc-one">JMeter <b>●</b></div>
+            <div class="floating-card fc-two">Grafana <b>↗</b></div>
+          </div>
+        </div>
       </div>
+      <a class="scroll-cue" href="#about" aria-label="Scroll to About section"><span></span></a>
     </section>
 
     <section class="section about" id="about">
       <div class="container two-col">
-        <div>
+        <div data-reveal>
           <p class="section-label">01 / ABOUT</p>
           <h2>Performance testing is more than generating load.</h2>
         </div>
-        <div class="section-copy">
+        <div class="section-copy" data-reveal style="--d:1">
           <p>I work across the performance-testing lifecycle — from understanding business-critical workflows and modelling realistic workloads to scripting, execution, monitoring, bottleneck analysis and release certification.</p>
           <p>My toolkit spans <strong>JMeter, NeoLoad, HP LoadRunner/Performance Center, BlazeMeter, Grafana, PerfMon, Chrome DevTools and Fiddler</strong>, with experience translating technical measurements into clear release decisions.</p>
         </div>
@@ -78,41 +119,60 @@
 
     <section class="section dark" id="skills">
       <div class="container">
-        <p class="section-label">02 / TOOLKIT</p>
-        <div class="section-heading-row"><h2>Tools & capabilities</h2><span>Performance • Observability • Delivery</span></div>
+        <p class="section-label" data-reveal>02 / TOOLKIT</p>
+        <div class="section-heading-row" data-reveal><h2>Tools & capabilities</h2><span>Performance • Observability • Delivery</span></div>
         <div class="skill-grid">
-          <article class="skill-card"><span class="skill-num">01</span><h3>Load testing</h3><p>JMeter · NeoLoad · LoadRunner / Performance Center · BlazeMeter</p></article>
-          <article class="skill-card"><span class="skill-num">02</span><h3>Performance analysis</h3><p>Workload modelling · SLA validation · bottleneck analysis · root-cause investigation</p></article>
-          <article class="skill-card"><span class="skill-num">03</span><h3>Monitoring</h3><p>Grafana · PerfMon · application/server metrics · logs · resource correlation</p></article>
-          <article class="skill-card"><span class="skill-num">04</span><h3>Testing strategy</h3><p>Baseline · load · stress · endurance · capacity · release performance certification</p></article>
-          <article class="skill-card"><span class="skill-num">05</span><h3>Engineering tools</h3><p>Chrome DevTools · Fiddler · HTTPWatch · JIRA · HP ALM · Excel reporting</p></article>
-          <article class="skill-card"><span class="skill-num">06</span><h3>Cloud</h3><p>AWS fundamentals with AWS Certified Cloud Practitioner certification</p></article>
+          <article class="skill-card card-fx" data-reveal data-tilt style="--d:0">
+            <div class="card-head"><span class="skill-num">01</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"/><path d="M12 18l4-6"/><circle cx="12" cy="18" r="1.2"/></svg></div>
+            <h3>Load testing</h3><p>JMeter · NeoLoad · LoadRunner / Performance Center · BlazeMeter</p>
+          </article>
+          <article class="skill-card card-fx" data-reveal data-tilt style="--d:1">
+            <div class="card-head"><span class="skill-num">02</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V4"/><path d="M4 20h16"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
+            <h3>Performance analysis</h3><p>Workload modelling · SLA validation · bottleneck analysis · root-cause investigation</p>
+          </article>
+          <article class="skill-card card-fx" data-reveal data-tilt style="--d:2">
+            <div class="card-head"><span class="skill-num">03</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg></div>
+            <h3>Monitoring</h3><p>Grafana · PerfMon · application/server metrics · logs · resource correlation</p>
+          </article>
+          <article class="skill-card card-fx" data-reveal data-tilt style="--d:0">
+            <div class="card-head"><span class="skill-num">04</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></div>
+            <h3>Testing strategy</h3><p>Baseline · load · stress · endurance · capacity · release performance certification</p>
+          </article>
+          <article class="skill-card card-fx" data-reveal data-tilt style="--d:1">
+            <div class="card-head"><span class="skill-num">05</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-4 4 4 4"/><path d="M16 8l4 4-4 4"/><path d="M13.5 5l-3 14"/></svg></div>
+            <h3>Engineering tools</h3><p>Chrome DevTools · Fiddler · HTTPWatch · JIRA · HP ALM · Excel reporting</p>
+          </article>
+          <article class="skill-card card-fx" data-reveal data-tilt style="--d:2">
+            <div class="card-head"><span class="skill-num">06</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18h10a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.2 9.1 4.5 4.5 0 0 0 7 18z"/></svg></div>
+            <h3>Cloud</h3><p>AWS fundamentals with AWS Certified Cloud Practitioner certification</p>
+          </article>
         </div>
       </div>
     </section>
 
     <section class="section" id="experience">
       <div class="container">
-        <p class="section-label">03 / EXPERIENCE</p>
-        <h2>Career journey</h2>
+        <p class="section-label" data-reveal>03 / EXPERIENCE</p>
+        <h2 data-reveal>Career journey</h2>
         <div class="timeline">
-          <article class="timeline-item current">
+          <div class="timeline-track" aria-hidden="true"><span></span></div>
+          <article class="timeline-item current" data-reveal>
             <div class="timeline-dot"></div><div class="timeline-meta">2025 — Present</div>
             <div class="timeline-content"><h3>Performance Test Engineer II</h3><p class="company">Enterprise software / product performance</p><p>Leading performance-test execution, workload design, analysis and release-level performance validation for enterprise applications. Focus areas include JMeter scripting, monitoring, infrastructure comparison and performance troubleshooting.</p></div>
           </article>
-          <article class="timeline-item">
+          <article class="timeline-item" data-reveal>
             <div class="timeline-dot"></div><div class="timeline-meta">2022 — 2025</div>
             <div class="timeline-content"><h3>Performance Test Engineer / Analyst</h3><p class="company">Enterprise performance testing</p><p>Designed and executed baseline, load, stress and endurance tests; analysed application, JVM, database and server behaviour; and communicated findings through actionable performance reports.</p></div>
           </article>
-          <article class="timeline-item">
+          <article class="timeline-item" data-reveal>
             <div class="timeline-dot"></div><div class="timeline-meta">2021 — 2022</div>
             <div class="timeline-content"><h3>Performance Testing</h3><p class="company">Everest Reinsurance</p><p>Performance engineering across enterprise insurance workloads, with emphasis on workload execution, analysis and performance validation.</p></div>
           </article>
-          <article class="timeline-item">
+          <article class="timeline-item" data-reveal>
             <div class="timeline-dot"></div><div class="timeline-meta">2020 — 2021</div>
             <div class="timeline-content"><h3>Performance Testing</h3><p class="company">Arch Lenders Mortgage Insurance</p><p>Worked on performance testing for enterprise banking and insurance applications.</p></div>
           </article>
-          <article class="timeline-item">
+          <article class="timeline-item" data-reveal>
             <div class="timeline-dot"></div><div class="timeline-meta">2019 — 2020</div>
             <div class="timeline-content"><h3>Performance Testing</h3><p class="company">Infosys Internal Services</p><p>Built the foundation in enterprise performance testing, tooling and analysis.</p></div>
           </article>
@@ -122,37 +182,49 @@
 
     <section class="section projects" id="projects">
       <div class="container">
-        <p class="section-label">04 / SELECTED WORK</p>
-        <div class="section-heading-row"><h2>What I work on</h2><span>Real-world performance engineering</span></div>
+        <p class="section-label" data-reveal>04 / SELECTED WORK</p>
+        <div class="section-heading-row" data-reveal><h2>What I work on</h2><span>Real-world performance engineering</span></div>
         <div class="project-grid">
-          <article class="project-card featured"><div class="project-tag">01 · APPLICATION PERFORMANCE</div><h3>Enterprise workflow performance</h3><p>Modeling business workflows, creating realistic concurrency and throughput profiles, executing long-running tests, and comparing results against established baselines.</p><div class="chips"><span>JMeter</span><span>Workload model</span><span>Baseline</span><span>SLA</span></div></article>
-          <article class="project-card"><div class="project-tag">02 · OBSERVABILITY</div><h3>From response time to root cause</h3><p>Correlating application response times with CPU, memory, JVM, logs and infrastructure metrics to isolate performance bottlenecks.</p><div class="chips"><span>Grafana</span><span>PerfMon</span><span>Logs</span></div></article>
-          <article class="project-card"><div class="project-tag">03 · RELEASE CERTIFICATION</div><h3>Build-to-build performance comparison</h3><p>Running controlled performance tests across builds, quantifying regressions or improvements and turning results into release-ready recommendations.</p><div class="chips"><span>Benchmarking</span><span>Regression</span><span>Reporting</span></div></article>
+          <article class="project-card featured card-fx" data-reveal data-tilt style="--d:0">
+            <svg class="project-art" viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0 50 L25 44 L50 46 L75 30 L100 34 L125 18 L150 22 L175 10 L200 12"/></svg>
+            <div class="project-tag">01 · APPLICATION PERFORMANCE</div><h3>Enterprise workflow performance</h3><p>Modeling business workflows, creating realistic concurrency and throughput profiles, executing long-running tests, and comparing results against established baselines.</p><div class="chips"><span>JMeter</span><span>Workload model</span><span>Baseline</span><span>SLA</span></div>
+          </article>
+          <article class="project-card card-fx" data-reveal data-tilt style="--d:1">
+            <svg class="project-art" viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0 40 L30 40 L40 20 L50 52 L60 30 L70 40 L200 40"/></svg>
+            <div class="project-tag">02 · OBSERVABILITY</div><h3>From response time to root cause</h3><p>Correlating application response times with CPU, memory, JVM, logs and infrastructure metrics to isolate performance bottlenecks.</p><div class="chips"><span>Grafana</span><span>PerfMon</span><span>Logs</span></div>
+          </article>
+          <article class="project-card card-fx" data-reveal data-tilt style="--d:2">
+            <svg class="project-art" viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0 44 L50 44 L60 30 L100 30 L110 18 L150 18 L160 30 L200 30"/></svg>
+            <div class="project-tag">03 · RELEASE CERTIFICATION</div><h3>Build-to-build performance comparison</h3><p>Running controlled performance tests across builds, quantifying regressions or improvements and turning results into release-ready recommendations.</p><div class="chips"><span>Benchmarking</span><span>Regression</span><span>Reporting</span></div>
+          </article>
         </div>
       </div>
     </section>
 
     <section class="section dark certifications" id="certifications">
       <div class="container two-col">
-        <div><p class="section-label">05 / CERTIFICATIONS</p><h2>Credentials that support the engineering work.</h2></div>
+        <div data-reveal><p class="section-label">05 / CERTIFICATIONS</p><h2>Credentials that support the engineering work.</h2></div>
         <div class="cert-list">
-          <div class="cert"><div class="cert-icon">AWS</div><div><h3>AWS Certified Cloud Practitioner</h3><p>November 2025</p></div></div>
-          <div class="cert"><div class="cert-icon">NL</div><div><h3>NeoLoad Professional Certification</h3><p>January 2022</p></div></div>
+          <div class="cert card-fx" data-reveal style="--d:0"><div class="cert-icon">AWS</div><div><h3>AWS Certified Cloud Practitioner</h3><p>November 2025</p></div></div>
+          <div class="cert card-fx" data-reveal style="--d:1"><div class="cert-icon">NL</div><div><h3>NeoLoad Professional Certification</h3><p>January 2022</p></div></div>
         </div>
       </div>
     </section>
 
     <section class="section contact" id="contact">
-      <div class="container contact-box">
+      <div class="container contact-box" data-reveal>
         <div><p class="section-label">06 / CONTACT</p><h2>Let's talk performance.</h2><p>If you're looking for someone who can turn load-test data into practical engineering decisions, I'd be happy to connect.</p></div>
-        <div class="contact-note"><strong><a href="mailto:shijaykj@gmail.com" class="email-link">
-        shijaykj@gmail.com
-    </a></strong><span>Performance Testing </span><span><a href="tel:+916282170581">Mob: 6282170581</a></span></div>
+        <div class="contact-note">
+          <strong><a href="mailto:shijaykj@gmail.com" class="email-link">shijaykj@gmail.com</a></strong>
+          <span>Performance Testing </span>
+          <span><a href="tel:+916282170581" class="phone-link">Mob: 6282170581</a></span>
+          <button class="copy-email" type="button" data-copy="shijaykj@gmail.com" hidden>Copy email</button>
+          <span class="sr-only" aria-live="polite" id="copy-status"></span>
+        </div>
       </div>
     </section>
   </main>
 
   <footer><div class="container footer-inner"><span>© <span id="year"></span> Shijay Jayan</span><span>Built for performance. Literally.</span></div></footer>
-  <script src="script.js"></script>
 </body>
 </html>

@@ -4,8 +4,18 @@ A responsive, static portfolio website for a Performance Test Engineer.
 
 ## Files
 - `index.html` — website content
-- `style.css` — responsive styling
-- `script.js` — mobile menu + dynamic year
+- `style.css` — responsive styling, animations and reduced-motion support
+- `script.js` — mobile menu, dynamic year, scroll reveals, active-section nav, card tilt, hero network canvas
+- `profile-96.webp` / `profile-96.jpg` — optimized avatar used in the header (`profile.png` is the original, used for link previews)
+
+No build step and no dependencies — it is plain HTML, CSS and JavaScript.
+
+## Run locally
+```bash
+python3 -m http.server 8000
+# open http://localhost:8000
+```
+(Opening `index.html` directly also works; the "Copy email" button only appears over http(s).)
 
 ## Free hosting: GitHub Pages
 1. Create a free account at GitHub if you do not already have one.
