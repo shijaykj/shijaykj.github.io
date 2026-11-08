@@ -43,15 +43,16 @@
 
   const onScroll = () => {
     ticking = false;
+    // Read all layout values first, then write, to avoid forced reflows
     const y = window.scrollY;
-    const max = doc.scrollHeight - window.innerHeight;
+    const vh = window.innerHeight;
+    const max = doc.scrollHeight - vh;
+    const r = timeline && track ? timeline.getBoundingClientRect() : null;
+
     navWrap?.classList.toggle('scrolled', y > 8);
     progress?.style.setProperty('--sp', max > 0 ? (y / max).toFixed(4) : '0');
-
-    if (timeline && track) {
-      const r = timeline.getBoundingClientRect();
-      const start = window.innerHeight * 0.75;
-      const p = Math.min(1, Math.max(0, (start - r.top) / r.height));
+    if (r) {
+      const p = Math.min(1, Math.max(0, (vh * 0.75 - r.top) / r.height));
       track.style.setProperty('--p', p.toFixed(4));
     }
   };
@@ -60,7 +61,7 @@
     if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
   }, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
-  onScroll();
+  requestAnimationFrame(onScroll);
 
   /* ---------- Active nav link ---------- */
   const navAnchors = [...document.querySelectorAll('.nav-links a[href^="#"]')];
@@ -308,7 +309,11 @@
     update();
 
     let resizeTimer = 0;
+    let lastW = w, lastH = h;
     const onResize = () => {
+      const r = heroShell.getBoundingClientRect();
+      if (Math.abs(r.width - lastW) < 1 && Math.abs(r.height - lastH) < 1) return; // ignore no-op (e.g. initial) callbacks
+      lastW = r.width; lastH = r.height;
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => { build(); draw(false); }, 150);
     };

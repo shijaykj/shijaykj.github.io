@@ -6,7 +6,13 @@ A responsive, static portfolio website for a Performance Test Engineer.
 - `index.html` — website content
 - `style.css` — responsive styling, animations and reduced-motion support
 - `script.js` — mobile menu, dynamic year, scroll reveals, active-section nav, card tilt, hero network canvas
-- `profile-96.webp` / `profile-96.jpg` — optimized avatar used in the header (`profile.png` is the original, used for link previews)
+- `profile-96.webp` / `profile-96.jpg` — optimized avatar used in the header (`profile.png` is the original)
+- `Shijay_KJ_Resume.pdf` — downloadable CV (replace this file to update it; keep the same name)
+- `fonts/` — self-hosted Inter and Space Grotesk (latin subset, SIL Open Font License)
+- `og-image.jpg` — 1200×630 link-preview image for LinkedIn, WhatsApp, etc.
+- `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest` — site icons
+- `404.html` — custom "page not found" page (GitHub Pages serves it automatically)
+- `robots.txt`, `sitemap.xml` — search-engine basics (structured data lives in `index.html`)
 
 No build step and no dependencies — it is plain HTML, CSS and JavaScript.
 
@@ -26,6 +32,5 @@ python3 -m http.server 8000
 6. GitHub will provide your public `github.io` URL.
 
 ## Before publishing
-- Add your preferred LinkedIn URL and professional email in the Contact section.
-- Add a downloadable CV if desired.
 - Review employer/project wording and remove anything confidential or proprietary.
+- After changing content, update `<lastmod>` in `sitemap.xml`.
