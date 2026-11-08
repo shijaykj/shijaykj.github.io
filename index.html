@@ -27,7 +27,7 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=5">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -50,7 +50,7 @@
   </script>
   <!-- Flag JS support early so reveal animations never hide content when scripts are unavailable -->
   <script>document.documentElement.classList.add('js')</script>
-  <script src="script.js" defer></script>
+  <script src="script.js?v=5" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#about">Skip to content</a>
@@ -272,21 +272,41 @@
 
     <section class="section contact" id="contact">
       <div class="container contact-box" data-reveal>
-        <div><p class="section-label">07 / CONTACT</p><h2>Let's talk performance.</h2><p>If you're looking for someone who can turn load-test data into practical engineering decisions, I'd be happy to connect.</p></div>
+        <div class="contact-main">
+          <p class="section-label">07 / CONTACT</p><h2>Let's talk performance.</h2><p>If you're looking for someone who can turn load-test data into practical engineering decisions, I'd be happy to connect.</p>
+          <div class="contact-viz" aria-hidden="true">
+            <svg viewBox="0 0 600 120" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="viz-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a6e36b" stop-opacity=".16"/><stop offset="1" stop-color="#a6e36b" stop-opacity="0"/></linearGradient>
+              </defs>
+              <g class="viz-track viz-slow">
+                <path class="viz-line alt" d="M0 92 C50 84 90 96 150 88 S250 74 300 84 S400 98 450 86 S550 80 600 92 M600 92 C650 84 690 96 750 88 S850 74 900 84 S1000 98 1050 86 S1150 80 1200 92"/>
+              </g>
+              <g class="viz-track">
+                <path class="viz-area" d="M0 70 H80 L95 70 L105 36 L118 98 L130 56 L140 70 H280 L295 70 L305 28 L318 100 L330 52 L340 70 H480 L495 70 L505 40 L518 96 L530 58 L540 70 H680 L695 70 L705 36 L718 98 L730 56 L740 70 H880 L895 70 L905 28 L918 100 L930 52 L940 70 H1080 L1095 70 L1105 40 L1118 96 L1130 58 L1140 70 H1200 V120 H0 Z" fill="url(#viz-fill)"/>
+                <path class="viz-line" d="M0 70 H80 L95 70 L105 36 L118 98 L130 56 L140 70 H280 L295 70 L305 28 L318 100 L330 52 L340 70 H480 L495 70 L505 40 L518 96 L530 58 L540 70 H680 L695 70 L705 36 L718 98 L730 56 L740 70 H880 L895 70 L905 28 L918 100 L930 52 L940 70 H1080 L1095 70 L1105 40 L1118 96 L1130 58 L1140 70 H1200"/>
+              </g>
+            </svg>
+            <span class="viz-sweep"></span>
+            <span class="viz-pulse"></span>
+          </div>
+        </div>
         <div class="contact-note">
           <strong><a href="mailto:shijaykj@gmail.com" class="email-link">shijaykj@gmail.com</a></strong>
           <span>Performance Testing </span>
           <span><a href="tel:+916282170581" class="phone-link">Mob: 6282170581</a></span>
           <div class="contact-actions">
-            <a class="contact-btn" href="https://www.linkedin.com/in/shijay-jayan-13233818b/" target="_blank" rel="noopener" aria-label="LinkedIn profile (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.95c0-1.18-.02-2.7-1.65-2.7-1.65 0-1.9 1.29-1.9 2.62V21h-4z"/></svg>LinkedIn</a>
-            <a class="contact-btn" href="Shijay_KJ_Resume.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Download CV</a>
-            <button class="copy-email contact-btn" type="button" data-copy="shijaykj@gmail.com" hidden>Copy email</button>
+            <a class="contact-btn linkedin" href="https://www.linkedin.com/in/shijay-jayan-13233818b/" target="_blank" rel="noopener" aria-label="LinkedIn profile (opens in a new tab)"><svg class="li-badge" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path fill="#fff" transform="translate(3.6 3.2) scale(.7)" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.95c0-1.18-.02-2.7-1.65-2.7-1.65 0-1.9 1.29-1.9 2.62V21h-4z"/></svg><span class="btn-label">LinkedIn</span><span class="btn-end" aria-hidden="true">↗</span></a>
+            <a class="contact-btn" href="Shijay_KJ_Resume.pdf" download><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="btn-label">Download CV</span><span class="btn-end" aria-hidden="true">↓</span></a>
+            <button class="copy-email contact-btn" type="button" data-copy="shijaykj@gmail.com" hidden><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="btn-label">Copy email</span></button>
           </div>
           <span class="sr-only" aria-live="polite" id="copy-status"></span>
         </div>
       </div>
     </section>
   </main>
+
+  <a class="to-top" href="#top" aria-label="Back to top"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m0 0l-6 6m6-6l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 
   <footer><div class="container footer-inner"><span>© <span id="year"></span> Shijay Jayan</span><span>Built for performance. Literally.</span></div></footer>
 </body>

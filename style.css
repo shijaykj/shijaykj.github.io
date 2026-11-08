@@ -467,8 +467,8 @@ img, svg { display: block; }
 .contact { padding: 110px 0; background: var(--bg); }
 .contact-box {
   position: relative; overflow: hidden; isolation: isolate;
-  border-radius: 24px; padding: 64px;
-  display: grid; grid-template-columns: 1.5fr .8fr; gap: 50px; align-items: end;
+  border-radius: 24px; padding: 60px 64px;
+  display: grid; grid-template-columns: 1.5fr .8fr; gap: 56px; align-items: stretch;
   background:
     radial-gradient(70% 90% at 0% 0%, rgba(166, 227, 107, .12), transparent 60%),
     radial-gradient(60% 80% at 100% 100%, rgba(111, 182, 255, .10), transparent 60%),
@@ -483,13 +483,42 @@ img, svg { display: block; }
   mask-image: linear-gradient(120deg, #000, transparent 60%);
   opacity: .6;
 }
+.contact-main { display: flex; flex-direction: column; min-width: 0; }
 .contact-box p:not(.section-label) { color: var(--muted); max-width: 600px; font-size: 17px; margin: 18px 0 0; }
-.contact-note { border-left: 1px solid var(--line-2); padding-left: 26px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+
+/* Decorative live-signal monitor */
+.contact-viz {
+  position: relative; margin-top: 34px; flex: 1 1 auto; min-height: 130px; max-height: 190px;
+  border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+  background:
+    linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px) 0 0 / 100% 25%,
+    linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px) 0 0 / 10% 100%,
+    rgba(10, 13, 18, .45);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.contact-viz svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.viz-track { animation: viz-scroll 6s linear infinite; }
+.viz-track.viz-slow { animation-duration: 14s; }
+.viz-line { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.viz-line.alt { stroke: var(--accent-2); stroke-width: 1.4; opacity: .55; }
+.viz-sweep {
+  position: absolute; top: 0; bottom: 0; left: 0; width: 22%;
+  background: linear-gradient(90deg, transparent, rgba(166, 227, 107, .10), transparent);
+  animation: viz-sweep 4.5s var(--ease) infinite;
+}
+.viz-pulse {
+  position: absolute; right: 9%; top: calc(70 / 120 * 100%); width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%; background: var(--accent); box-shadow: 0 0 14px var(--accent);
+}
+.viz-pulse::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--accent); animation: ping 2s var(--ease) infinite; }
+
+.contact-note { border-left: 1px solid var(--line-2); padding-left: 32px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; }
 .contact-note strong { font: 700 18px var(--display); }
-.contact-note span { font-size: 13px; color: var(--faint); }
+.contact-note > span { font-size: 13px; color: var(--faint); }
 
 .email-link {
-  position: relative; color: var(--ink); font: 700 19px var(--display);
+  position: relative; color: var(--ink); font: 700 19px var(--display); word-break: break-word;
   background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 1.5px no-repeat;
   transition: background-size .4s var(--ease), color .3s ease;
 }
@@ -497,18 +526,41 @@ img, svg { display: block; }
 .phone-link { color: var(--muted); font-size: 13px; transition: color .25s ease; }
 .phone-link:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 
-.contact-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.contact-actions { display: flex; flex-direction: column; align-self: stretch; gap: 10px; margin-top: auto; padding-top: 26px; }
 .contact-btn {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 8px 14px; border-radius: 999px; cursor: pointer;
-  font: 600 12px Inter, system-ui, sans-serif; color: var(--ink);
-  background: rgba(255, 255, 255, .04); border: 1px solid var(--line-2);
-  transition: border-color .25s ease, color .25s ease, background-color .25s ease, transform .3s var(--ease);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; gap: 12px; width: 100%;
+  padding: 13px 16px; border-radius: 12px; cursor: pointer; text-align: left;
+  font: 600 14px Inter, system-ui, sans-serif; color: var(--ink);
+  background: rgba(255, 255, 255, .035); border: 1px solid var(--line-2);
+  transition: border-color .25s ease, color .25s ease, background-color .25s ease, transform .35s var(--ease), box-shadow .35s ease;
 }
-.contact-btn svg { width: 14px; height: 14px; fill: currentColor; }
-.contact-btn:hover { border-color: rgba(166, 227, 107, .5); color: var(--accent); transform: translateY(-1px); }
+.contact-btn svg { flex: 0 0 18px; width: 18px; height: 18px; }
+.btn-label { flex: 1 1 auto; }
+.btn-end { color: var(--faint); transition: transform .35s var(--ease), color .25s ease; }
+.contact-btn:hover { border-color: rgba(166, 227, 107, .5); color: var(--accent); transform: translateX(4px); background: rgba(166, 227, 107, .05); }
+.contact-btn:hover .btn-end { color: currentColor; transform: translate(2px, -2px); }
+.contact-btn[download]:hover .btn-end { transform: translateY(3px); }
+.contact-btn.linkedin:hover { border-color: rgba(10, 102, 194, .8); color: #fff; background: rgba(10, 102, 194, .16); box-shadow: 0 10px 28px rgba(10, 102, 194, .25); }
+.li-badge { border-radius: 4px; transition: transform .35s var(--ease); }
+.contact-btn.linkedin:hover .li-badge { transform: scale(1.1) rotate(-4deg); }
 .copy-email[hidden] { display: none; }
 .copy-email.copied { color: var(--accent); border-color: rgba(166, 227, 107, .5); background: rgba(166, 227, 107, .08); }
+
+/* ---------- Back to top (with scroll-progress ring) ---------- */
+.to-top {
+  position: fixed; right: 22px; bottom: 22px; z-index: 900;
+  width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center;
+  color: var(--ink);
+  background:
+    radial-gradient(closest-side, var(--surface-2) 86%, transparent 88%),
+    conic-gradient(var(--accent) calc(var(--sp, 0) * 360deg), var(--line-2) 0);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .45);
+  opacity: 0; visibility: hidden; transform: translateY(12px) scale(.9);
+  transition: opacity .3s ease, transform .4s var(--ease), visibility 0s linear .4s, color .25s ease;
+}
+.to-top.show { opacity: 1; visibility: visible; transform: none; transition: opacity .3s ease, transform .4s var(--ease), visibility 0s, color .25s ease; }
+.to-top:hover { color: var(--accent); transform: translateY(-3px); }
 
 /* ---------- Footer ---------- */
 footer { background: var(--bg); border-top: 1px solid var(--line); color: var(--faint); padding: 26px 0; font-size: 12px; }
@@ -527,6 +579,9 @@ footer { background: var(--bg); border-top: 1px solid var(--line); color: var(--
 @keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 @keyframes float { 50% { translate: 0 -10px; } }
 @keyframes ping { 0% { transform: scale(1); opacity: .7; } 80%, 100% { transform: scale(2.6); opacity: 0; } }
+@keyframes viz-scroll { to { transform: translateX(-600px); } }
+@keyframes viz-sweep { from { transform: translateX(-120%); } to { transform: translateX(480%); } }
+@keyframes flow { from { transform: translateX(-100%); } to { transform: translateX(340%); } }
 @keyframes cue { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(12px); opacity: 0; } 100% { opacity: 0; } }
 
 .js .intro { animation: rise .9s var(--ease) both; animation-delay: calc(var(--d, 0) * 110ms + 80ms); }
@@ -564,6 +619,57 @@ footer { background: var(--bg); border-top: 1px solid var(--line); color: var(--
 .js .project-art path { stroke-dashoffset: 1; }
 .js .is-visible .project-art path { transition: stroke-dashoffset 1.6s var(--ease) .3s; stroke-dashoffset: 0; }
 
+
+/* ---------- Page-wide motion layer ---------- */
+
+/* Section labels: the leading rule draws in */
+.js .section-label::before { transform: scaleX(0); transform-origin: left; transition: transform .9s var(--ease) .15s; }
+.js .is-visible .section-label::before, .js .section-label.is-visible::before { transform: scaleX(1); }
+
+/* Section headings rise out of a mask */
+.js .section h2:not([data-reveal]) { clip-path: inset(0 -20px 100% -20px); translate: 0 .35em; transition: clip-path 1s var(--ease) .1s, translate 1s var(--ease) .1s, opacity .8s var(--ease); }
+.js .section .is-visible h2 { clip-path: inset(-10px -20px -20px -20px); translate: 0 0; }
+
+/* "Data flow" light travelling along section dividers */
+.about, #experience, .certifications, .education { overflow-x: clip; }
+.about::before, #experience::before, .certifications::before, .education::before {
+  content: ""; position: absolute; top: -1px; left: 0; width: 28%; height: 1px; pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--accent-2), transparent);
+  opacity: .7; animation: flow 9s linear infinite;
+}
+#experience::before { animation-delay: -3s; }
+.certifications::before { animation-delay: -6s; }
+.education::before { animation-delay: -1.5s; }
+
+/* Skill icons draw their strokes */
+.js .skill-card .icon :is(path, circle) { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.js .skill-card.is-visible .icon :is(path, circle) { stroke-dashoffset: 0; transition: stroke-dashoffset 1.3s var(--ease) calc(var(--d, 0) * 90ms + .35s); }
+
+/* Chips and highlight bullets cascade in */
+.js [data-reveal] .chips span, .js [data-reveal] .highlights li, .js [data-reveal] .engagements li {
+  opacity: 0; translate: 0 8px;
+  transition: opacity .6s var(--ease), translate .6s var(--ease), border-color .25s ease, color .25s ease, background-color .25s ease;
+  transition-delay: calc(var(--i, 0) * 55ms + .35s), calc(var(--i, 0) * 55ms + .35s), 0s, 0s, 0s;
+}
+.js [data-reveal].is-visible .chips span, .js [data-reveal].is-visible .highlights li, .js [data-reveal].is-visible .engagements li { opacity: 1; translate: 0 0; }
+
+/* Certification badges pop in */
+.js .cert .cert-icon { scale: .6; opacity: 0; transition: scale .7s cubic-bezier(.34, 1.56, .64, 1) .25s, opacity .5s ease .25s, transform .4s var(--ease); }
+.js .cert.is-visible .cert-icon { scale: 1; opacity: 1; }
+
+/* Primary buttons: light sweep on hover */
+.btn.primary { overflow: hidden; }
+.btn.primary::after {
+  content: ""; position: absolute; top: 0; bottom: 0; left: -40%; width: 30%; pointer-events: none;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .45), transparent);
+  transform: skewX(-20deg); transition: left .7s var(--ease);
+}
+.btn.primary:hover::after { left: 120%; }
+
+/* Hero headline accent: slow shimmer */
+.hero h1 span { background-size: 200% 100%; animation: shimmer 8s ease-in-out infinite; }
+@keyframes shimmer { 50% { background-position: 100% 0; } }
+
 /* =========================================================
    RESPONSIVE
    ========================================================= */
@@ -581,7 +687,9 @@ footer { background: var(--bg); border-top: 1px solid var(--line); color: var(--
   .project-card { min-height: 0; }
   .two-col { grid-template-columns: 1fr; gap: 36px; }
   .contact-box { grid-template-columns: 1fr; }
-  .contact-note { border-left: 0; border-top: 1px solid var(--line-2); padding: 24px 0 0; }
+  .contact-note { border-left: 0; border-top: 1px solid var(--line-2); padding: 28px 0 0; }
+  .contact-box { gap: 36px; }
+  .contact-viz { flex: none; height: 140px; }
   .nav-links { gap: 16px; }
   .section { padding: 96px 0; }
 }
@@ -637,7 +745,9 @@ footer { background: var(--bg); border-top: 1px solid var(--line); color: var(--
   .cert h3 { font-size: 17px; }
   .cert-link { grid-column: 2; justify-self: start; margin-left: 0; }
   .contact { padding: 80px 0; }
-  .contact-box { padding: 36px 24px; border-radius: 20px; }
+  .contact-box { padding: 36px 22px; border-radius: 20px; }
+  .contact-viz { height: 110px; min-height: 0; margin-top: 28px; }
+  .to-top { right: 14px; bottom: 14px; width: 42px; height: 42px; }
   .footer-inner { flex-direction: column; gap: 8px; }
 }
 
@@ -659,5 +769,12 @@ footer { background: var(--bg); border-top: 1px solid var(--line); color: var(--
     transition-delay: 0s !important;
   }
   .js [data-reveal] { opacity: 1; translate: none; }
+  .js .section h2 { clip-path: none; translate: none; }
+  .js .section-label::before { transform: none; }
+  .js [data-reveal] .chips span, .js [data-reveal] .highlights li, .js [data-reveal] .engagements li { opacity: 1; translate: none; }
+  .js .cert .cert-icon { scale: 1; opacity: 1; }
+  .js .skill-card .icon :is(path, circle) { stroke-dashoffset: 0; }
+  .viz-track, .viz-sweep, .viz-pulse::after, .about::before, #experience::before, .certifications::before, .education::before { animation: none !important; }
+  .viz-sweep, .about::before, #experience::before, .certifications::before, .education::before { display: none; }
   .dot::after, .current .timeline-dot::after, .scroll-cue span { display: none; }
 }
