@@ -4,35 +4,33 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#0a0d12">
+  <meta name="theme-color" content="#0b0e13">
   <meta name="color-scheme" content="dark">
   <title>Page not found | Shijay Jayan</title>
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/style.css?v=6">
   <style>
-    .nf { min-height: 100svh; display: grid; place-items: center; text-align: center; padding: 40px 16px; position: relative; overflow: hidden; isolation: isolate; }
-    .nf .hero-grid { opacity: .5; }
-    .nf-code { font: 700 clamp(72px, 16vw, 160px)/1 var(--display); letter-spacing: -.05em; margin: 22px 0 8px;
-      background: linear-gradient(100deg, var(--accent) 10%, #d4f5a8 50%, var(--accent-2) 95%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .nf h1 { font: 700 clamp(24px, 4vw, 34px)/1.2 var(--display); letter-spacing: -.02em; margin: 0 0 10px; }
-    .nf p { color: var(--muted); margin: 0 auto 32px; max-width: 460px; }
-    .nf-log { display: inline-block; text-align: left; font: 13px/2 var(--mono); color: var(--muted); background: var(--surface); border: 1px solid var(--line-2); border-radius: 12px; padding: 14px 20px; margin-bottom: 32px; }
-    .nf-log i { color: #ff8b8b; font-style: normal; }
-    .nf-log b { color: var(--accent); font-weight: 500; }
+    @font-face { font-family: 'Space Grotesk'; font-weight: 500 700; font-display: swap; src: url(/fonts/space-grotesk-latin.woff2) format('woff2'); }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 40px 16px; background: #0b0e13; color: #e9edf2; font: 16px/1.6 Inter, system-ui, sans-serif; text-align: center; }
+    .k { font: 500 12px/1 ui-monospace, Consolas, monospace; letter-spacing: .14em; text-transform: uppercase; color: #9fdc6c; }
+    .code { font: 700 clamp(80px, 18vw, 160px)/1 'Space Grotesk', system-ui, sans-serif; letter-spacing: -.05em; margin: 18px 0 6px; color: #e9edf2; }
+    h1 { font: 600 clamp(22px, 4vw, 30px)/1.2 'Space Grotesk', system-ui, sans-serif; margin: 0 0 10px; }
+    p { color: #9aa3b1; margin: 0 auto 28px; max-width: 440px; }
+    .log { display: inline-block; text-align: left; font: 13px/2 ui-monospace, Consolas, monospace; color: #9aa3b1; background: #12171f; border: 1px solid rgba(214,226,240,.15); border-radius: 12px; padding: 12px 18px; margin-bottom: 28px; }
+    .log i { color: #ff6f6f; font-style: normal; } .log b { color: #9fdc6c; font-weight: 500; }
+    a.btn { display: inline-flex; align-items: center; min-height: 46px; padding: 0 20px; border-radius: 10px; background: #9fdc6c; color: #0d1608; font-weight: 600; text-decoration: none; }
+    a.btn:focus-visible { outline: 2px solid #6fb3f2; outline-offset: 3px; }
   </style>
 </head>
 <body>
-  <main class="nf">
-    <div class="hero-grid" aria-hidden="true"></div>
-    <div>
-      <div class="eyebrow"><span class="dot"></span> HTTP 404</div>
-      <div class="nf-code" aria-hidden="true">404</div>
-      <h1>This request didn't meet its SLA.</h1>
-      <p>The page you're looking for doesn't exist or has moved.</p>
-      <div class="nf-log" aria-hidden="true"><i>✗</i> GET <span id="path">/</span> → 404 Not Found<br><b>→ Routing you back home</b></div>
-      <div><a class="btn primary" href="/">Back to the portfolio <span class="btn-arrow" aria-hidden="true">↗</span></a></div>
-    </div>
+  <main>
+    <p class="k">HTTP 404</p>
+    <div class="code" aria-hidden="true">404</div>
+    <h1>This request didn't meet its SLA.</h1>
+    <p>The page you're looking for doesn't exist or has moved.</p>
+    <div class="log" aria-hidden="true"><i>✗</i> GET <span id="path">/</span> → 404 Not Found<br><b>→ Route back to the portfolio</b></div>
+    <div><a class="btn" href="/">Back to the portfolio →</a></div>
   </main>
   <script>document.getElementById('path').textContent = location.pathname;</script>
 </body>
