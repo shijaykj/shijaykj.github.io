@@ -1,36 +1,47 @@
-# Shijay Jayan — Personal Portfolio
+# Shijay Jayan — Performance Engineering Portfolio
 
-A responsive, static portfolio website for a Performance Test Engineer.
+An interactive portfolio for a Performance Test Engineer, designed like an
+engineering control room and built to be fast: the site measures its own Core
+Web Vitals live in the footer.
 
-## Files
-- `index.html` — website content
-- `style.css` — responsive styling, animations and reduced-motion support
-- `script.js` — mobile menu, dynamic year, scroll reveals, active-section nav, card tilt, hero network canvas
-- `profile-96.webp` / `profile-96.jpg` — optimized avatar used in the header (`profile.png` is the original)
-- `Shijay_KJ_Resume.pdf` — downloadable CV (replace this file to update it; keep the same name)
-- `fonts/` — self-hosted Inter and Space Grotesk (latin subset, SIL Open Font License)
-- `og-image.jpg` — 1200×630 link-preview image for LinkedIn, WhatsApp, etc.
-- `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest` — site icons
-- `404.html` — custom "page not found" page (GitHub Pages serves it automatically)
-- `robots.txt`, `sitemap.xml` — search-engine basics (structured data lives in `index.html`)
+## Sections
+1. **Hero:** a miniature load test (users → traffic → application → metrics) on one canvas.
+2. **Approach:** interactive latency distribution (average vs p90/p95/p99).
+3. **Process:** the eight-stage testing journey; scroll-driven on desktop, swipeable on mobile.
+4. **Systems:** clickable architecture (users, load generator, web, app, database, monitoring).
+5. **Toolchain:** tools filtered by lifecycle phase, with how each is used.
+6. **Case studies:** challenge → investigation → bottleneck → improvement → outcome.
+7. **Live lab:** a queueing-model simulator (VU slider, bottleneck injection, optimisation).
+8. **Career:** experience timeline, education and certifications.
+9. **Contact:** email, LinkedIn, GitHub and CV download.
 
-No build step and no dependencies — it is plain HTML, CSS and JavaScript.
+## Project layout
+- `index.html`: page markup and content (career details live here)
+- `src/js/content.js`: text for the journey, architecture, toolchain and case studies
+- `src/js/`: `main.js` (entry), `sections.js`, `hero.js`, `lab.js` (queueing model), `vitals.js`, `motion.js` (GSAP, lazy-loaded)
+- `src/css/main.css`: design system and layout
+- `public/`: files copied as-is (CV, fonts, icons, og-image, robots.txt, sitemap.xml, manifest)
+- `404.html`: custom not-found page
 
-## Run locally
+## Develop
 ```bash
-python3 -m http.server 8000
-# open http://localhost:8000
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build into dist/
+npm run preview    # serve dist/ at http://localhost:4173
 ```
-(Opening `index.html` directly also works; the "Copy email" button only appears over http(s).)
 
-## Free hosting: GitHub Pages
-1. Create a free account at GitHub if you do not already have one.
-2. Create a new **public** repository named `shijay-portfolio` (or `<yourusername>.github.io` for a root personal site).
-3. Upload `index.html`, `style.css`, `script.js`, and this README.
-4. In the repository, open **Settings → Pages**.
-5. Under Build and deployment, choose **Deploy from a branch**, select `main` and `/ (root)`, then Save.
-6. GitHub will provide your public `github.io` URL.
+## Deploy (GitHub Pages)
+`.github/workflows/deploy.yml` builds the site and publishes `dist/` on every push to `main`.
+One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
-## Before publishing
-- Review employer/project wording and remove anything confidential or proprietary.
-- After changing content, update `<lastmod>` in `sitemap.xml`.
+## Performance notes
+- Critical path: HTML + one CSS file + one small JS module + two preloaded, self-hosted fonts.
+- GSAP/ScrollTrigger load only on wide screens with motion enabled, after the page is idle.
+- Canvas loops run only while visible and the tab is active; nothing animates with `prefers-reduced-motion`.
+- Off-screen sections use `content-visibility: auto` with measured size estimates. If you change a
+  section's content substantially, update its `--est` value in `main.css`.
+
+## Updating content
+- Replace `public/Shijay_KJ_Resume.pdf` to update the CV (keep the name).
+- After changing content, update `<lastmod>` in `public/sitemap.xml`.
